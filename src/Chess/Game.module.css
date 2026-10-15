@@ -1,0 +1,290 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:global(body) {
+  background-color: #242424;
+  color: #deeaee;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.game {
+  --square: min(10vmin, 76px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 16px;
+}
+
+.board {
+  display: flex;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: repeat(8, var(--square));
+  grid-template-rows: repeat(8, var(--square));
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.row_label {
+  display: grid;
+  grid-template-rows: repeat(8, var(--square));
+  width: 28px;
+}
+
+.col_label {
+  display: grid;
+  grid-template-columns: repeat(8, var(--square));
+  height: 28px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #deeaee;
+  font-size: 14px;
+}
+
+.side_box {
+  width: min(360px, 100%);
+  padding: 16px;
+  background-color: #77e1d7;
+  color: #242424;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status_title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.status_detail {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.pips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.pip {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #242424;
+}
+
+.pip_full {
+  background-color: #242424;
+}
+
+.alert {
+  color: #a4161a;
+}
+
+.button_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.button_wrapper .button {
+  flex: 1;
+}
+
+.button {
+  height: 32px;
+  cursor: pointer;
+  color: white;
+  background-color: #00ba6d;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.move_list {
+  max-height: 40vh;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+  padding: 6px;
+  font-size: 15px;
+}
+
+.move_list_empty {
+  padding: 4px;
+  opacity: 0.7;
+}
+
+.move_row {
+  display: grid;
+  grid-template-columns: 32px 1fr 1fr;
+  align-items: center;
+}
+
+.move_number {
+  opacity: 0.6;
+}
+
+.move {
+  background: none;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 4px;
+  margin-right: 2px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.move:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.move_current {
+  background-color: #242424;
+  color: #77e1d7;
+}
+
+.move_current:hover {
+  background-color: #242424;
+}
+
+.rules {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.rules summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.rules ul {
+  margin: 6px 0 0 18px;
+}
+
+.square {
+  height: var(--square);
+  width: var(--square);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.piece {
+  font-size: calc(var(--square) * 0.7);
+  line-height: 1;
+  color: #000;
+  user-select: none;
+}
+
+.target_dot {
+  position: absolute;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.not_allowed {
+  cursor: not-allowed;
+}
+
+.default {
+  cursor: default;
+}
+
+.white_square {
+  background-color: #f0d9b5;
+}
+
+.black_square {
+  background-color: #b58863;
+}
+
+.last_move_square {
+  background-color: #cdd26a;
+}
+
+.selected_square {
+  background-color: #6c6f47;
+}
+
+.highlighted_square {
+  background-color: #8c966f;
+}
+
+.in_check_square {
+  background-color: #e5534b;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background-color: #77e1d7;
+  color: #242424;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.picker_choices {
+  display: flex;
+  gap: 8px;
+}
+
+.picker_choice {
+  width: var(--square);
+  height: var(--square);
+  border: none;
+  border-radius: 5px;
+  background-color: #f0d9b5;
+  cursor: pointer;
+}
+
+.picker_choice:hover {
+  background-color: #cdd26a;
+}
+
+@media (max-width: 640px) {
+  .game {
+    --square: calc((100vw - 32px - 28px) / 8);
+    padding: 16px;
+  }
+}
